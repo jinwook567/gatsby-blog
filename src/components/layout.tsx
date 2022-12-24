@@ -6,6 +6,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import './layout.css';
 import Bio from './bio';
 import { BioQuery } from '../../types';
+import Footer from './footer';
 
 type Props = {
   children: React.ReactNode;
@@ -52,20 +53,21 @@ const bioQuery = graphql`
 
 function Layout({ children }: Props) {
   const data = useStaticQuery<BioQuery>(bioQuery);
+  const { author } = data.site.siteMetadata;
 
   return (
     <ThemeProvider theme={theme}>
       <Container css={containerStyle}>
-        <Grid component="header" marginTop={3}>
-          <Bio author={data.site.siteMetadata.author} />
+        <Grid component="header" marginTop={3} marginBottom={8}>
+          <Bio author={author} />
         </Grid>
 
-        <Grid component="main" sx={{ flex: 1 }}>
+        <Grid component="main" sx={{ flex: 1 }} marginBottom={8}>
           {children}
         </Grid>
 
         <Grid component="footer" marginBottom={1}>
-          footer
+          <Footer author={author} />
         </Grid>
       </Container>
     </ThemeProvider>
