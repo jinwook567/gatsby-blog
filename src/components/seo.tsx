@@ -14,7 +14,6 @@ const seoQuery = graphql`
         title
         author {
           name
-          description
         }
       }
     }
