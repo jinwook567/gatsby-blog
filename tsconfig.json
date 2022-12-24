@@ -26,6 +26,7 @@
     "./src/**/*",
     "./gatsby-config.ts",
     "./plugins/**/*",
-    "src/pages/.tsx"
+    "src/pages/.tsx",
+    "types.ts"
   ]
 }

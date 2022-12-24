@@ -2,7 +2,10 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container, Grid } from '@mui/material';
 import { css } from '@emotion/react';
+import { graphql, useStaticQuery } from 'gatsby';
 import './layout.css';
+import Bio from './bio';
+import { BioQuery } from '../../types';
 
 type Props = {
   children: React.ReactNode;
@@ -29,12 +32,32 @@ const containerStyle = css`
   max-width: 700px;
 `;
 
+const bioQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        author {
+          name
+          description
+          social {
+            github
+            instagram
+            email
+          }
+        }
+      }
+    }
+  }
+`;
+
 function Layout({ children }: Props) {
+  const data = useStaticQuery<BioQuery>(bioQuery);
+
   return (
     <ThemeProvider theme={theme}>
       <Container css={containerStyle}>
         <Grid component="header" marginTop={3}>
-          bio
+          <Bio author={data.site.siteMetadata.author} />
         </Grid>
 
         <Grid component="main" sx={{ flex: 1 }}>
