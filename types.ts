@@ -15,3 +15,14 @@ export type BioQuery = {
     };
   };
 };
+
+export type SeoQuery = {
+  site: {
+    siteMetadata: {
+      title: string;
+      author: {
+        name: Author['name'];
+      };
+    };
+  };
+};
