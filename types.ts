@@ -54,3 +54,8 @@ export type IndexQuery = {
     nodes: MarkdownNode[];
   };
 };
+
+export type CreatePagesQuery = {
+  data?: IndexQuery;
+  error?: unknown;
+};

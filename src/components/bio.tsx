@@ -29,7 +29,11 @@ function Bio({ author }: Props) {
       <Grid item>
         {services.map(service => {
           const url = author.social[service];
-          return url && <SocialIconButton service={service} url={url} />;
+          return (
+            url && (
+              <SocialIconButton service={service} url={url} key={service} />
+            )
+          );
         })}
       </Grid>
     </Grid>
