@@ -1,12 +1,12 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Container, Grid } from '@mui/material';
-import { css } from '@emotion/react';
+import { Grid } from '@mui/material';
+import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
-import './layout.css';
 import Bio from './bio';
 import { BioQuery } from '../../types';
 import Footer from './footer';
+import './layout.css';
 
 type Props = {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ const theme = createTheme({
   },
 });
 
-const containerStyle = css`
+const Container = styled(Grid)`
   min-height: 100%;
   margin: 0 auto;
   display: flex;
@@ -57,7 +57,7 @@ function Layout({ children }: Props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container css={containerStyle}>
+      <Container>
         <Grid component="header" marginTop={3} marginBottom={8}>
           <Bio author={author} />
         </Grid>

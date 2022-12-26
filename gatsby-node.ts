@@ -39,7 +39,26 @@ const createCategoryPages = ({
   });
 };
 
-const createPostPages = () => {};
+const createPostPages = ({
+  actions,
+  markdownNodes,
+}: {
+  actions: CreatePageArgs['actions'];
+  markdownNodes: MarkdownNode[];
+}) => {
+  markdownNodes.forEach((markdownNode, index) => {
+    actions.createPage({
+      path: markdownNode.fields.slug,
+      component: path.resolve('./src/templates/post-template.tsx'),
+      context: {
+        node: markdownNode,
+        previous:
+          index === markdownNodes.length - 1 ? null : markdownNodes[index + 1],
+        next: index === 0 ? null : markdownNodes[index - 1],
+      },
+    });
+  });
+};
 
 export const createPages: GatsbyNode['createPages'] = async ({
   actions,
@@ -92,4 +111,5 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const markdownNodes = response.data.allMarkdownRemark.nodes;
 
   createCategoryPages({ actions, markdownNodes, directoryNodes });
+  createPostPages({ actions, markdownNodes });
 };
