@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import { IndexQuery } from '../../types';
 import CategoryList from '../components/category-list';
 import Layout from '../components/layout';
@@ -50,6 +50,7 @@ function IndexPage() {
         categories={categories}
         initialSelectedCategory="ALL"
         postNodes={postNodes}
+        showAllPosts={false}
       />
     </Layout>
   );

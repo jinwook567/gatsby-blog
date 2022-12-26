@@ -1,23 +1,27 @@
 import { Grid } from '@mui/material';
+import { navigate } from 'gatsby';
 import React, { useState } from 'react';
 import { MarkdownNode } from '../../types';
 import CategoryTab from './category-tab';
 import PostList from './post-list';
+import ShowMoreButton from './show-more-button';
 
 type Props = {
   categories: string[];
   initialSelectedCategory: string;
   postNodes: MarkdownNode[];
+  showAllPosts: boolean;
 };
 
 function CategoryList({
   categories,
   initialSelectedCategory,
   postNodes,
+  showAllPosts,
 }: Props) {
   const [tabValue, setTabValue] = useState(initialSelectedCategory);
 
-  const categoryNodes =
+  const tabNodes =
     tabValue === 'ALL'
       ? postNodes
       : postNodes.filter(node => {
@@ -30,14 +34,14 @@ function CategoryList({
     newValue: string
   ) => {
     setTabValue(newValue);
+
+    if (showAllPosts) {
+      navigate(`/category/${newValue}`);
+    }
   };
 
-  // category-tab과 post-list 컴포넌트 들어가야함.
-  // post-lis에는 post-card가 들어가야함.
-  // CategoryList는 더보기 버튼(썸네일) 유무에 따라 handleTabValue가 달라져야함. navigate
+  const maxPostsCnt = 5;
 
-  // post-list의 경우 더보기 버튼이 있다면 5개까지, 아니라면 전부.
-  // 더보기 버튼에 따라서 onChange, button 2개가 변경이 됨. 리팩토링 생각..
   return (
     <Grid>
       <Grid marginBottom={10}>
@@ -49,8 +53,16 @@ function CategoryList({
       </Grid>
 
       <Grid>
-        <PostList nodes={categoryNodes} />
+        <PostList
+          nodes={showAllPosts ? tabNodes : tabNodes.slice(0, maxPostsCnt)}
+        />
       </Grid>
+
+      {!showAllPosts && tabNodes.length > maxPostsCnt && (
+        <Grid marginTop={5}>
+          <ShowMoreButton to={`/category/${tabValue}`} />
+        </Grid>
+      )}
     </Grid>
   );
 }
