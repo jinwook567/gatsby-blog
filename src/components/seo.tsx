@@ -1,10 +1,11 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { SeoQuery } from '../../types';
 
 type Props = {
-  title: 'default' | string;
-  description: string;
+  title?: string;
+  description?: string;
 };
 
 const seoQuery = graphql`
@@ -14,6 +15,7 @@ const seoQuery = graphql`
         title
         author {
           name
+          description
         }
       }
     }
@@ -26,8 +28,11 @@ function Seo({ title, description }: Props) {
 
   return (
     <>
-      <title>{title === 'default' ? siteMetadata.title : title}</title>
-      <meta name="description" content={description} />
+      <title>{title || siteMetadata.title}</title>
+      <meta
+        name="description"
+        content={description || siteMetadata.author.description}
+      />
       <meta name="author" content={data.site.siteMetadata.author.name} />
     </>
   );

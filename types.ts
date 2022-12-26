@@ -22,6 +22,7 @@ export type SeoQuery = {
       title: string;
       author: {
         name: Author['name'];
+        description: Author['description'];
       };
     };
   };

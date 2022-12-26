@@ -6,6 +6,7 @@ import { css } from '@emotion/react';
 import { MarkdownNode } from '../../types';
 import Layout from '../components/layout';
 import PostNavigator from '../components/post-navigator';
+import Seo from '../components/seo';
 
 type Props = {
   pageContext: {
@@ -50,6 +51,16 @@ function PostTemplate({ pageContext }: Props) {
         <PostNavigator previous={previous} next={next} />
       </Grid>
     </Layout>
+  );
+}
+
+export function Head({ pageContext }: Props) {
+  const { node } = pageContext;
+  return (
+    <Seo
+      title={node.frontmatter.title}
+      description={node.frontmatter.description}
+    />
   );
 }
 

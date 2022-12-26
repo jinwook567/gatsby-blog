@@ -57,7 +57,7 @@ function IndexPage() {
 }
 
 export function Head() {
-  return <Seo title="default" description="blog main page" />;
+  return <Seo />;
 }
 
 export default IndexPage;
