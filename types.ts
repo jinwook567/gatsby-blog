@@ -27,7 +27,7 @@ export type SeoQuery = {
   };
 };
 
-export type TabNode = {
+export type DirectoryNode = {
   name: string;
 };
 
@@ -47,7 +47,7 @@ export type MarkdownNode = {
 
 export type IndexQuery = {
   allDirectory: {
-    edges: { node: TabNode }[];
+    edges: { node: DirectoryNode }[];
   };
 
   allMarkdownRemark: {

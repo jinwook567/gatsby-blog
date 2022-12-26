@@ -1,13 +1,14 @@
 import { Tab, Tabs } from '@mui/material';
 import React from 'react';
+import { DirectoryNode } from '../../types';
 
 type Props = {
-  categories: string[];
+  categories: DirectoryNode['name'][];
   onChange: (
     event: React.SyntheticEvent<Element, Event>,
-    newValue: string
+    newValue: DirectoryNode['name']
   ) => void;
-  value: string;
+  value: DirectoryNode['name'];
 };
 
 function CategoryTab({ categories, onChange, value }: Props) {

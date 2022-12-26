@@ -1,14 +1,14 @@
 import { Grid } from '@mui/material';
 import { navigate } from 'gatsby';
 import React, { useState } from 'react';
-import { MarkdownNode } from '../../types';
+import { DirectoryNode, MarkdownNode } from '../../types';
 import CategoryTab from './category-tab';
 import PostList from './post-list';
 import ShowMoreButton from './show-more-button';
 
 type Props = {
-  categories: string[];
-  initialSelectedCategory: string;
+  categories: DirectoryNode['name'][];
+  initialSelectedCategory: DirectoryNode['name'];
   postNodes: MarkdownNode[];
   showAllPosts: boolean;
 };
