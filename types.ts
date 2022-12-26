@@ -26,3 +26,13 @@ export type SeoQuery = {
     };
   };
 };
+
+export type TabNode = {
+  name: string;
+};
+
+export type IndexQuery = {
+  allDirectory: {
+    edges: { node: TabNode }[];
+  };
+};
