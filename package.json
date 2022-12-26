@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.1",
+    "dotenv": "^16.0.3",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "gatsby": "^5.3.3",
     "gatsby-plugin-emotion": "^8.3.0",

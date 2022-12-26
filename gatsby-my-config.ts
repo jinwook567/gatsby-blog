@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env' });
+
 const config = {
   siteMetadata: {
     title: `gatsby-blog`,
@@ -13,7 +17,7 @@ const config = {
     },
   },
   ga: {
-    trackingIds: [],
+    trackingIds: [process.env.GA_TRACKING_ID].filter(id => id),
   },
 };
 
