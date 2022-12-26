@@ -31,8 +31,26 @@ export type TabNode = {
   name: string;
 };
 
+export type MarkdownNode = {
+  frontmatter: {
+    date: Date;
+    description: string;
+    title: string;
+  };
+  fields: {
+    slug: string;
+  };
+  html: string;
+  id: string;
+  excerpt: string;
+};
+
 export type IndexQuery = {
   allDirectory: {
     edges: { node: TabNode }[];
+  };
+
+  allMarkdownRemark: {
+    nodes: MarkdownNode[];
   };
 };
