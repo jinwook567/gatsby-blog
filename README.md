@@ -1,54 +1,110 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
-</h1>
+# Gatsby Blog Template
 
-## 🚀 Quick start
+[Demo](https://nr567.xyz)
 
-1.  **Create a Gatsby site.**
+[gatsby-starter-blog](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog) 템플릿을 사용하면서 변경하고 싶었던 점을 적용해보기 위해서, gatsby 학습을 위해서 블로그 템플릿을 제작하였습니다.
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+직접 사용하면서 필요한 기능들을 추가할 예정입니다.
+제안해 주실 기능이 있다면 이슈로 등록해주시면 감사하겠습니다.
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
+# 기술 스택
 
-2.  **Start developing.**
+- typescript
+- gatsby v5
+- emotion, mui
 
-    Navigate into your new site’s directory and start it up.
+# 지원 기능
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+- 카테고리 기능 (파일 구조에 따른 카테고리 분류)
+- 블로그 정보 설정(gatsby-my-config)
+- sitemap 자동 생성
+- github actions를 사용한 자동 배포(main branch)
+- Google analytics4 지원
 
-3.  **Open the code and start customizing!**
+# 시작
 
-    Your site is now running at http://localhost:8000!
+## 1. 템플릿 실행
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+```
+npm install
+npm start
+```
 
-4.  **Learn more**
+## 2. 블로그 정보 설정
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+`gatsby-my-config.ts`의 파일의 `config` 속성을 수정해줍니다.
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+```ts
+siteMetadata: {
+    title: '블로그명',
+    siteUrl: '블로그 주소',
+    author: {
+      name: '저자명',
+      description: '저자 설명',
+      social: {
+        github: 'https://github.com/jinwook567',
+        email: 'dlwlsdnr567@naver.com',
+        instagram: '',
+      },
+    },
+  },
+```
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+social을 추가하고 싶지 않다면 속성을 삭제하지말고 빈 문자열을 삽입해주세요.
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+구글 애널리틱스를 사용한다면 `.env` 파일을 생성하고 GA_TRACKING_ID 값을 추가해주세요.
+github actions를 활용한 자동 배포를 사용하신다면 Repository secrets에 GA_TRACKING_ID 값을 추가해주세요.
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+## 3. 카테고리 생성
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+파일 구조에 따라서 카테고리를 분류합니다.
 
-## 🚀 Quick start (Gatsby Cloud)
+`content` 폴더 내 최상단 폴더(=카테고리 폴더)가 카테고리로 적용됩니다.
+카테고리명은 폴더명과 동일합니다.
 
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+```
+content
+├── category1
+├── category2
+├── category3
+└── category4
+```
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+위와 같은 파일 구조를 가질 경우 category1, category2, category3, category4로 카테고리가 분류됩니다.
+
+카테고리 폴더 하위에 존재하는 모든 글은 해당 카테고리에 속하게 됩니다.
+카테고리 폴더의 하위 폴더는 여러 계층으로 구성되도 상관없습니다.
+
+## 4. 글 작성하기
+
+카테고리 폴더 아래 폴더를 생성하고 `index.md` 파일을 생성합니다.
+해당 파일을 markdown 문법으로 작성하면 됩니다.
+
+```
+content
+├── category1
+│   ├── post1
+│   │   └── index.md
+│   └── post2
+│       └── index.md
+├── category2
+├── category3
+└── category4
+```
+
+마크다운 문서의 부모 폴더는 페이지 경로를 생성하는데 사용됩니다.
+위 예시의 경우 `category1/post1`, `category2/post2` 페이지 경로를 가지게 됩니다.
+
+### index.md 필수 정보
+
+index.md 파일의 상단에는 `title`, `description`, `date` 정보가 삽입되어야 합니다.
+
+```
+title: post title
+description: post description
+date: 2022-12-26
+```
+
+### 이미지 삽입
+
+이미지를 사용하고자 하는 `index.md` 파일과 동일한 폴더에 이미지를 추가한 뒤에 마크다운 문법을 사용하여 불러옵니다.

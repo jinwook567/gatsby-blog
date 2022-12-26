@@ -44,6 +44,7 @@ function PostTemplate({ pageContext }: Props) {
 
       <section
         className="markdown-body"
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: node.html }}
       />
 
