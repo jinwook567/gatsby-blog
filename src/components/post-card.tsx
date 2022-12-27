@@ -27,7 +27,9 @@ function PostCard({ node }: Props) {
     >
       <Grid container rowGap={1} direction="column">
         <Typography variant="h4">{node.frontmatter.title}</Typography>
-        <Typography variant="h5">{node.frontmatter.description}</Typography>
+        <Typography variant="body1" fontSize={18}>
+          {node.frontmatter.description}
+        </Typography>
         <Typography variant="body2">{node.excerpt}</Typography>
         <Typography variant="body2" color="secondary">
           {formatDate(node.frontmatter.date)}
