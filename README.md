@@ -108,3 +108,18 @@ date: 2022-12-26
 ### 이미지 삽입
 
 이미지를 사용하고자 하는 `index.md` 파일과 동일한 폴더에 이미지를 추가한 뒤에 마크다운 문법을 사용하여 불러옵니다.
+
+## 5. 배포
+
+### 자동 배포
+
+main branch에 push하면 github actions를 활용하여 gh-pages 브랜치에 자동으로 배포됩니다.
+(참고: [github pages](https://pages.github.com/))
+
+자동 배포를 원하지 않는다면 `.github` 폴더를 삭제해주세요.
+
+### 명령어
+
+```
+npm run deploy
+```
