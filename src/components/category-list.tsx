@@ -1,6 +1,5 @@
+import React from 'react';
 import { Grid } from '@mui/material';
-import { navigate } from 'gatsby';
-import React, { useState } from 'react';
 import { DirectoryNode, MarkdownNode } from '../../types';
 import CategoryTab from './category-tab';
 import PostList from './post-list';
@@ -8,19 +7,19 @@ import ShowMoreButton from './show-more-button';
 
 type Props = {
   categories: DirectoryNode['name'][];
-  initialSelectedCategory: DirectoryNode['name'];
+  tabValue: DirectoryNode['name'];
+  onChange: (newTabValue: DirectoryNode['name']) => void;
   postNodes: MarkdownNode[];
   showAllPosts: boolean;
 };
 
 function CategoryList({
   categories,
-  initialSelectedCategory,
+  tabValue,
+  onChange,
   postNodes,
   showAllPosts,
 }: Props) {
-  const [tabValue, setTabValue] = useState(initialSelectedCategory);
-
   const tabNodes =
     tabValue === 'ALL'
       ? postNodes
@@ -28,17 +27,6 @@ function CategoryList({
           const category = node.fields.slug.split('/')[1];
           return category === tabValue;
         });
-
-  const handleTabValue = (
-    event: React.SyntheticEvent<Element, Event>,
-    newValue: string
-  ) => {
-    setTabValue(newValue);
-
-    if (showAllPosts) {
-      navigate(`/category/${newValue}`);
-    }
-  };
 
   const maxPostsCnt = 5;
 
@@ -48,7 +36,7 @@ function CategoryList({
         <CategoryTab
           categories={categories}
           value={tabValue}
-          onChange={handleTabValue}
+          onChange={(e, newValue) => onChange(newValue)}
         />
       </Grid>
 

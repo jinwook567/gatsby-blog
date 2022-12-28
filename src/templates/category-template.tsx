@@ -1,3 +1,4 @@
+import { navigate } from 'gatsby';
 import React from 'react';
 import { DirectoryNode, MarkdownNode } from '../../types';
 import CategoryList from '../components/category-list';
@@ -13,12 +14,18 @@ type Props = {
 };
 
 function CategoryTemplate({ pageContext }: Props) {
+  const tabValue = pageContext.name;
+  const onChange = (newTabValue: DirectoryNode['name']) => {
+    navigate(`/category/${newTabValue}`);
+  };
+
   return (
     <Layout>
       <CategoryList
         categories={pageContext.categories}
         postNodes={pageContext.postNodes}
-        initialSelectedCategory={pageContext.name}
+        tabValue={tabValue}
+        onChange={onChange}
         showAllPosts
       />
     </Layout>

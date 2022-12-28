@@ -1,9 +1,11 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { IndexQuery } from '../../types';
+import { atom, useRecoilState } from 'recoil';
+import { DirectoryNode, IndexQuery } from '../../types';
 import CategoryList from '../components/category-list';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
+import categoryState from '../atoms';
 
 const indexQuery = graphql`
   query {
@@ -44,11 +46,17 @@ function IndexPage() {
   const edges = [{ node: { name: 'ALL' } }, ...data.allDirectory.edges];
   const categories = edges.map(({ node }) => node.name);
 
+  const [tabValue, setTabValue] = useRecoilState(categoryState);
+  const handleTabValue = (newTabValue: DirectoryNode['name']) => {
+    setTabValue(newTabValue);
+  };
+
   return (
     <Layout>
       <CategoryList
         categories={categories}
-        initialSelectedCategory="ALL"
+        tabValue={tabValue}
+        onChange={handleTabValue}
         postNodes={postNodes}
         showAllPosts={false}
       />

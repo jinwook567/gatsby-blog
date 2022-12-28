@@ -29,6 +29,7 @@
     "src/pages/.tsx",
     "types.ts",
     "gatsby-node.ts",
-    "gatsby-my-config.ts"
+    "gatsby-my-config.ts",
+    "gatsby-browser.tsx"
   ]
 }

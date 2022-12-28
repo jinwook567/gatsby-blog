@@ -28,10 +28,9 @@ function PostTemplate({ pageContext }: Props) {
           &:hover {
             text-decoration: underline;
           }
-          font-weight: 500;
         `}
       >
-        {categoryName}
+        <Typography variant="body1">{categoryName}</Typography>
       </Link>
 
       <Typography
