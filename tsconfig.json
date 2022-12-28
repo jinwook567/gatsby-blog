@@ -30,6 +30,7 @@
     "types.ts",
     "gatsby-node.ts",
     "gatsby-my-config.ts",
-    "gatsby-browser.tsx"
+    "gatsby-browser.tsx",
+    "gatsby-ssr.tsx"
   ]
 }

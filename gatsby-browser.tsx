@@ -1,9 +1,5 @@
-import React from 'react';
-import { GatsbyBrowser } from 'gatsby';
-import { RecoilRoot } from 'recoil';
+import { wrapRootElement as ssrWrapRootElement } from './gatsby-ssr';
 
-export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({
-  element,
-}) => <RecoilRoot>{element}</RecoilRoot>;
+export const wrapRootElement = ssrWrapRootElement;
 
 export default {};
