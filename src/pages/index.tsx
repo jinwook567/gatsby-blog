@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { atom, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { DirectoryNode, IndexQuery } from '../../types';
 import CategoryList from '../components/category-list';
 import Layout from '../components/layout';
