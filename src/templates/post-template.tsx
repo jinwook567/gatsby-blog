@@ -1,24 +1,27 @@
 import React from 'react';
 import 'github-markdown-css/github-markdown-light.css';
+import { useRecoilValue } from 'recoil';
 import { Grid, Typography } from '@mui/material';
 import { Link } from 'gatsby';
 import { css } from '@emotion/react';
-import { MarkdownNode } from '../../types';
+import { MarkdownNode, Navigator } from '../../types';
 import Layout from '../components/layout';
 import PostNavigator from '../components/post-navigator';
 import Seo from '../components/seo';
+import categoryState from '../atoms';
 
 type Props = {
   pageContext: {
-    previous: MarkdownNode | null;
-    next: MarkdownNode | null;
+    allNavigator: Navigator;
+    categoryNavigator: Navigator;
     node: MarkdownNode;
   };
 };
 
 function PostTemplate({ pageContext }: Props) {
-  const { next, previous, node } = pageContext;
+  const { allNavigator, categoryNavigator, node } = pageContext;
   const categoryName = node.fields.slug.split('/')[1];
+  const tabValue = useRecoilValue(categoryState);
 
   return (
     <Layout>
@@ -48,7 +51,14 @@ function PostTemplate({ pageContext }: Props) {
       />
 
       <Grid sx={{ marginTop: 5 }}>
-        <PostNavigator previous={previous} next={next} />
+        <PostNavigator
+          previous={
+            tabValue === 'ALL'
+              ? allNavigator.previous
+              : categoryNavigator.previous
+          }
+          next={tabValue === 'ALL' ? allNavigator.next : categoryNavigator.next}
+        />
       </Grid>
     </Layout>
   );

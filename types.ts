@@ -60,3 +60,8 @@ export type CreatePagesQuery = {
   data?: IndexQuery;
   error?: unknown;
 };
+
+export type Navigator = {
+  previous: MarkdownNode | null;
+  next: MarkdownNode | null;
+};
