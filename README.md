@@ -1,17 +1,6 @@
 # Gatsby Blog Template
 
-[Demo](https://nr567.xyz)
-
-[gatsby-starter-blog](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog) 템플릿을 사용하면서 변경하고 싶었던 점을 적용해보기 위해서, gatsby 학습을 위해서 블로그 템플릿을 제작하였습니다.
-
-직접 사용하면서 필요한 기능들을 추가할 예정입니다.
-제안해 주실 기능이 있다면 이슈로 등록해주시면 감사하겠습니다.
-
-# 기술 스택
-
-- typescript
-- gatsby v5
-- emotion, mui
+[Demo](https://jinwook567.github.io/blog)
 
 # 지원 기능
 
